@@ -1,7 +1,0 @@
-{"[python]": {
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    }
-}
-
-}
