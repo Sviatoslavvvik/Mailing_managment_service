@@ -13,8 +13,6 @@ schema_view = get_schema_view(
       title="Mailing Service API",
       default_version='v1',
       description="Документация для сервиса рассылок",
-    #   contact=openapi.Contact(email="123@kittygram.ru"),
-    #   license=openapi.License(name="BSD License"),
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),

@@ -21,3 +21,5 @@ sqlparse==0.4.3
 typing_extensions==4.4.0
 urllib3==1.26.13
 zipp==3.11.0
+celery
+redis

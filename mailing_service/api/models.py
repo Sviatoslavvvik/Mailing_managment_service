@@ -1,6 +1,15 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
+
+
+def validate_mailing_filters(value):
+    if 'tag' not in value.keys() and 'code' not in value.keys():
+        raise ValidationError(
+            'mailing_filters должно содержать поля tag, code'
+        )
+    return value
 
 
 class Mailing(models.Model):
@@ -18,13 +27,14 @@ class Mailing(models.Model):
         max_length=200
     )
     mailing_filters = models.JSONField(
-        'Фильтр свойств клиента'
+        'Фильтр свойств клиента',
+        validators=[validate_mailing_filters]
     )
 
     def __str__(self):
         return (f'{self.id},'
-                'время начала - {self.start_time}, '
-                'время окончания {self.end_time}')
+                f'время начала - {self.start_time}, '
+                f'время окончания {self.end_time}')
 
     class Meta:
         verbose_name = 'Mailing'

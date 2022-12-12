@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_yasg',
     'rest_framework',
-    'core.apps.CoreConfig',
     'api.apps.ApiConfig',
     'debug_toolbar',
 ]
@@ -97,9 +96,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
-
-
 STATIC_URL = '/static/'
 
 
@@ -114,4 +110,15 @@ SEND_CHOICES = [
 
 INTERNAL_IPS = [
     '127.0.0.1',
-] 
+]
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+
+
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
